@@ -16,7 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Unpack tested Godot Web Build
-        run: unzip -q game-v0.1-web.zip -d public
+        run: |
+          unzip -q game-v0.1-web.zip -d public
+          if [ -f game-patch.zip ]; then unzip -oq game-patch.zip -d public; fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
